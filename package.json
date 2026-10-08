@@ -11,7 +11,9 @@
   "dependencies": {
     "next": "16.4.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "redoc": "^2.5.4",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@types/node": "^20",
