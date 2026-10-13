@@ -36,6 +36,6 @@ One shared OpenAPI spec is rendered as a different Redoc page per partner.
 ## Git
 
 - Commit messages follow Conventional Commits: `type(scope): subject`. Scope is optional.
-- Allowed types: `feat`, `fix`, `docs`, `refactor`, `chore`, `style`.
+- Allowed types: `feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`.
 - Subject line is imperative mood ("add filter", not "added filter") and 72 characters or fewer.
 - Never add a `Co-Authored-By` trailer to commits.
