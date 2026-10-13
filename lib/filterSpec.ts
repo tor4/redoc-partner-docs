@@ -53,7 +53,7 @@ export function filterSpec(source: OpenAPISpec, partner: PartnerConfig): OpenAPI
   spec.info ??= { title: "API", version: "1.0.0" };
   if (partner.logo) spec.info["x-logo"] = { url: partner.logo, altText: partner.name };
 
-  if (!new RegExp(`^${escapeRegExp(partner.name)}\\b`, "i").test(spec.info.title ?? "")) {
+  if (!new RegExp(`^${escapeRegExp(partner.name)}(?!\\w)`, "i").test(spec.info.title ?? "")) {
     spec.info.title = `${partner.name} — ${spec.info.title ?? "API"}`;
   }
 
