@@ -6,9 +6,10 @@
 npm run dev     # http://localhost:3000 (use `localhost`, not 127.0.0.1, which blocks HMR)
 npm run build
 npm run lint    # eslint
+npm test        # Vitest: unit, config and component tests
 ```
 
-There is no test suite.
+See Testing below for coverage and E2E commands.
 
 ## Architecture
 
@@ -28,6 +29,23 @@ One shared OpenAPI spec is rendered as a different Redoc page per partner.
 ## Styling
 
 - No inline styles (`style={{...}}`). Use CSS Modules (`*.module.css`) next to the component and import them as `styles`.
+
+## Testing
+
+```bash
+npm test                # Vitest, once
+npm run test:watch      # Vitest in watch mode
+npm run test:coverage   # Vitest with coverage report (lib/** only, no thresholds)
+npm run test:e2e        # Playwright against a production build on port 3100
+```
+
+- New logic in `lib/` ships with a colocated `<name>.test.ts`. A component test is `Foo.test.tsx` next to the component (jsdom project). Playwright specs live in `tests/e2e/*.spec.ts`.
+- Check existing tests before writing a new one; extend them instead of duplicating.
+- Test behavior, not implementation. One behavior per test, titled as a sentence starting with a verb (no "should").
+- Cover edge cases (empty, missing, malformed input) and security: path traversal in slugs/spec names, regex characters in partner names, and hidden operations never appearing in a partner's page source.
+- Keep tests deterministic and independent: no network or clock, clone fixtures with `structuredClone`, mock only what the project does not own (`node:fs`, `redoc`).
+- Write a failing regression test before fixing a bug, and confirm a new test can fail by briefly breaking the code.
+- `notFound()` for an unknown slug can return HTTP 200 or 404 depending on cache state, so E2E asserts the not-found page, not the status.
 
 ## Code style
 

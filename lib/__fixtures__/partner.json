@@ -1,0 +1,8 @@
+{
+  "name": "Fixture Partner",
+  "spec": "spec",
+  "logo": "https://example.com/logo.png",
+  "servers": ["https://partner.example/v1"],
+  "include": { "tags": ["pets"] },
+  "exclude": { "operationIds": ["deletePet"] }
+}
