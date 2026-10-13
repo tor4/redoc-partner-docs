@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import RedocView from "@/components/RedocView";
 import { filterSpec } from "@/lib/filterSpec";
@@ -16,14 +17,20 @@ export async function generateMetadata({
   const { partner: slug } = await params;
   const partner = await loadPartner(slug);
 
-  return partner ?{ title: `${partner.name} API Docs` } : {};
+  return partner ? { title: `${partner.name} API Docs` } : {};
 }
 
-export default async function PartnerDocsPage({
-  params,
-}: {
-  params: Promise<{ partner: string }>;
-}) {
+type PartnerParams = Promise<{ partner: string }>;
+
+export default function PartnerDocsPage({ params }: { params: PartnerParams }) {
+  return (
+    <Suspense fallback={<p>Loading API docs…</p>}>
+      <PartnerDocs params={params} />
+    </Suspense>
+  );
+}
+
+async function PartnerDocs({ params }: { params: PartnerParams }) {
   const { partner: slug } = await params;
   const partner = await loadPartner(slug);
 
@@ -31,5 +38,7 @@ export default async function PartnerDocsPage({
 
   const spec = filterSpec(await loadSpec(partner.spec), partner);
 
-  return <RedocView spec={spec} options={partner.options} theme={partner.theme} />;
+  return (
+    <RedocView spec={spec} options={partner.options} theme={partner.theme} />
+  );
 }
