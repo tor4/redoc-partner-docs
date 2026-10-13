@@ -1,0 +1,15 @@
+{
+  "name": "Globex Partner API",
+  "spec": "petstore",
+  "logo": "https://placehold.co/160x40/1d3557/ffffff?text=GLOBEX",
+  "servers": ["https://partners.globex.example/pets"],
+  "include": { "tags": ["pet", "user"] },
+  "exclude": { "operationIds": ["deletePet", "deleteUser"] },
+  "options": { "hideDownloadButton": true, "expandResponses": "200" },
+  "theme": {
+    "colors": { "primary": { "main": "#1d3557" } },
+    "typography": { "fontFamily": "system-ui, sans-serif", "code": { "color": "#1d3557" } },
+    "sidebar": { "backgroundColor": "#1d3557", "textColor": "#ffffff" },
+    "rightPanel": { "backgroundColor": "#0b1d33" }
+  }
+}

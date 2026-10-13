@@ -1,0 +1,12 @@
+{
+  "name": "Acme Pets",
+  "spec": "petstore",
+  "logo": "https://placehold.co/160x40/e4572e/ffffff?text=ACME",
+  "servers": ["https://api.acme.example/v3"],
+  "include": { "tags": ["pet", "store"] },
+  "theme": {
+    "colors": { "primary": { "main": "#e4572e" } },
+    "typography": { "fontFamily": "Georgia, serif", "headings": { "fontFamily": "Georgia, serif" } },
+    "sidebar": { "backgroundColor": "#fff4f0" }
+  }
+}
